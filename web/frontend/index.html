@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acceso Feraytek</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="icon" href="/img/logo2.jpeg" type="image/jpeg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/product.css" />
+    <style>
+      #root{opacity:0;transition:opacity .15s ease}
+    </style>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin onerror="(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js';s.crossOrigin='anonymous';document.head.appendChild(s);})();"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin onerror="(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js';s.crossOrigin='anonymous';document.head.appendChild(s);})();"></script>
+    <script>window.Feraytek=window.Feraytek||{};window.Feraytek.API={base:"/api"};</script>
+    <script src="/controllers/auth.js" defer></script>
+    <script src="/controllers/cart.js" defer></script>
+    <script src="/controllers/products.js" defer></script>
+    <script src="/controllers/orders.js" defer></script>
+    <script src="/controllers/payments.js" defer></script>
+    <script src="/controllers/support.js" defer></script>
+    <script src="/controllers/favorites.js" defer></script>
+    <script src="/lib/useForm.js" defer></script>
+    <script src="/components/Login.jsx" defer></script>
+    <script src="/components/Register.jsx" defer></script>
+    <script src="/components/Header.jsx" defer></script>
+    <script src="/components/Cart.jsx" defer></script>
+    <script src="/components/Landing.jsx" defer></script>
+    <script src="/components/Catalog.jsx" defer></script>
+    <script src="/components/ProductDetail.jsx" defer></script>
+    <script src="/components/Profile.jsx" defer></script>
+    <script src="/components/Checkout.jsx" defer></script>
+    <script src="/components/OrderHistory.jsx" defer></script>
+    <script src="/components/Contact.jsx" defer></script>
+    <script src="/components/Support.jsx" defer></script>
+    <script src="/components/Favorites.jsx" defer></script>
+    <script src="/components/Offers.jsx" defer></script>
+    <script src="/components/Footer.jsx" defer></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/app.jsx" defer></script>
+    <script>
+      (function(){
+        try{
+          var es = new EventSource('/live');
+          var connectedAt = Date.now();
+          var pending = false;
+          es.onmessage = function(ev){
+            if(!(ev && ev.data === 'reload')) return;
+            if(Date.now() - connectedAt < 1000) return;
+            if(pending) return;
+            pending = true;
+            setTimeout(function(){ location.reload(); }, 50);
+          };
+        }catch{}
+      })();
+    </script>
+  </body>
+  </html>
