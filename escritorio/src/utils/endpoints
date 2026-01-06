@@ -1,0 +1,695 @@
+             Feraytek-API 
+
+Funcionalidades Públicas (sin autenticación) 
+
+Metodo: POST: http://localhost:3000/api/users/register, Content-Type / application/Json 
+
+{ 
+
+  "nombre_usuario": "usuario123", 
+
+  "nombre": "Ramon", 
+
+  "apellido": "Pérez", 
+
+  "email": "Ramon.perez@email.com", 
+
+  "password": "1234", 
+
+  "dni": "14738292", 
+
+  "telefono": "114737933", 
+
+  "direccion": "Av. Corrientes 1234", 
+
+  "ciudad": "Buenos Aires", 
+
+  "provincia": "Buenos Aires", 
+
+  "pais": "Argentina", 
+
+  "codigo_postal": "1000", 
+
+  "fecha_nacimiento": "1990-01-15" 
+
+} 
+
+ 
+
+Metodo POST: http://localhost:3000/api/users/login, Content-Type / application/Json 
+
+{ 
+
+  "email": "Ramon.perez@email.com", 
+
+  "password": "1234" 
+
+} 
+
+ 
+
+Metodo GET: http://localhost:3000/api/productos, Content-Type / application/Json (Listar-Productos) 
+
+Metodo GET: http://localhost:3000/api/productos/1, Content-Type / application/Json (obtener producto por ID) 
+
+Metodo GET:  http://localhost:3000/api/categorias/activas, Content-Type / application/Json (Listar categorias activas) 
+
+Metodo GET: http://localhost:3000/api/categorias/stats,  Content-Type / application/Json (Estadisticas de las categorias) 
+
+Metodo GET: http://localhost:3000/api/categorias/1, Content-Type / application/Json (Obtener categorias por ID) 
+
+Metodo GET:  http://localhost:3000/api/users/profile, Content-Type / application/Json, authorization bearer el_token. (Obtiene perfil) 
+
+Metodo PUT: http://localhost:3000/api/users/profile, Content-Type / application/Json, authorization bearer el_token. (actualiza el  perfil) 
+
+{ 
+
+  "nombre": "Nuevo Nombre", 
+
+  "email": "nuevo@email.com", 
+
+  "telefono": "123456789" 
+
+} 
+
+Metodo PUT: http://localhost:3000/api/users/password, Content-Type / application/Json, authorization bearer el_token. (cambiar contraseña con confirmacion por email Asunto: Contraseña actualizada - Feraytek 
+
+{ 
+
+  "currentPassword": "contraseña_actual", 
+
+  "newPassword": "nueva_contraseña", 
+
+  "confirmPassword": "nueva_contraseña" 
+
+} 
+
+Hola Juan, 
+
+  
+
+Tu contraseña ha sido actualizada exitosamente. 
+
+  
+
+Detalles del cambio: 
+
+- Fecha: 22/01/2024 14:30 
+
+- Dispositivo: Chrome en Windows 
+
+- IP: 192.168.1.100 
+
+  
+
+Si no fuiste tú quien realizó este cambio,  
+
+contacta inmediatamente a soporte@feraytek.com 
+
+  
+
+Saludos, 
+
+Equipo Feraytek) 
+
+Metodo POST: http://localhost:3000/api/auth/forgot-password,  Content-Type / application/Json (este endpoint solicita un codigo que se le envia al gmail cuando olvida su contraseña) 
+
+{ 
+
+    "email": "elleofernandez2005@gmail.com" 
+
+} 
+
+ 
+
+Metodo POST: http://localhost:3000/api/auth/reset-password, Content-Type / application/Json (este endpoint cambia la contraseña mediante el codigo). 
+
+{ 
+
+  "email": "elleofernandez2005@gmail.com", 
+
+  "code": "150302", 
+
+  "newPassword": "123456789", 
+
+  "confirmPassword": "123456789" 
+
+} 
+
+ 
+
+ 
+
+Funcionalidades Facturas (Administrador) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/todas, Content-Type / application/Json, authorization bearer el_token. (obtener todas las facturas) 
+
+Metodo GET:   http://localhost:3000/api/facturas/admin/1,  Content-Type / application/Json, authorization bearer el_token. (obtener las facturas por id especifico)    
+
+Metodo POST: http://localhost:3000/api/facturas/admin,     Content-Type / application/Json, authorization bearer el_token. (crear facturas)    
+
+{ 
+
+  "id_usuario": 18, 
+
+  "id_pedido": 1, 
+
+  "total": 1500.00, 
+
+  "tipo": "A", 
+
+  "subtotal": 1200.00, 
+
+  "iva_total": 300.00, 
+
+  "id_pago": null, 
+
+  "pdf_url": null 
+
+} 
+
+                                   
+
+Metodo PATCH: http://localhost:3000/api/facturas/admin/2/marcar-enviada, Content-Type / application/Json, authorization bearer el_token. (marcar facturas como enviadas) 
+
+Metodo POST: http://localhost:3000/api/facturas/admin/2/enviar-email,  Content-Type / application/Json, authorization bearer el_token. (enviar facturas por email) 
+
+Metodo POST: http://localhost:3000/api/facturas/admin/2/generar-pdf, Content-Type / application/Json, authorization bearer el_token. (generar pdf de la factura) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/2/pdf,  Content-Type / application/Json, authorization bearer el_token. (obtener un pdf existente mediante ID) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/estadisticas,  Content-Type / application/Json, authorization bearer el_token. (obtener estadisticas de las facturas) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/buscar?id-usuario=18, Content-Type / application/Json, authorization bearer el_token. (busqueda de las facturas del usuario por ID) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/buscar?email_enviado=true,Content-Type / application/Json, authorization bearer el_token. (busqueda de los emails enviados a los usuarios)      
+
+Metodo GET: http://localhost:3000/api/facturas/admin/buscar?fecha_inicio=2025-01-01&fecha_fin=2025-12-31,  Content-Type / application/Json, authorization bearer el_token. (busqueda de las facturas por fechas de inicio y fin) 
+
+Metodo GET: http://localhost:3000/api/facturas/admin/buscar?id_usuario=18&email_enviado=false&limite=10, Content-Type / application/Json, authorization bearer el_token. (busqueda combinada con limite)  
+
+ Metodo GET: http://localhost:3000/api/facturas/admin/buscar?F-20251026-0001,  Content-Type / application/Json, authorization bearer el_token. (busqueda por numero de factura) 
+
+ 
+
+ 
+
+Funcionalidades de Administradores/SuperAdmin 
+## Cómo usar
+- Activos: GET /api/productos?estado=activo
+- Inactivos: GET /api/productos?estado=inactivo
+- Todos: GET /api/productos?estado=todos![alt text](image.png)
+
+Metodo GET:  http://localhost:3000/api/users, Content-Type / application/Json, authorization bearer el_token (lista los  usuarios) 
+
+Metodo GET: http://localhost:3000/api/users/profile/4,  Content-Type / application/Json, authorization bearer el_token (ver usuario especifico mediante el ID) 
+
+Metodo PUT: http://localhost:3000/api/users/profile/cliente/1, Content-Type / application/Json, authorization bearer el_token (actualizar usuario cliente) 
+
+  "nombre_usuario": "nuevo_usuario", 
+
+  "email": "nuevo@email.com", 
+
+  "estado": "activo", 
+
+  "dni": "12345678", 
+
+  "nombre": "Juan", 
+
+  "apellido": "Pérez", 
+
+  "telefono": "1234567890", 
+
+  "direccion": "Calle 123", 
+
+  "ciudad": "Buenos Aires", 
+
+  "provincia": "Buenos Aires", 
+
+  "pais": "Argentina", 
+
+  "codigo_postal": "1000", 
+
+  "fecha_nacimiento": "1990-01-01" 
+
+} 
+
+ 
+
+Metodo DELETE http://localhost:3000/api/users/1,  Content-Type / application/Json, authorization bearer el_token (inhabilitar usuario) 
+
+Metodo POST: http://localhost:3000/api/superadmin/register-admin, Content-Type / application/Json, authorization bearer el_token (registra un admin el superadmin) 
+
+Metodo GET: http://localhost:3000/api/superadmin/admins, Content-Type / application/Json, authorization bearer el_token (lista los administradores, lo hace superadmin) 
+
+Metodo PUT: http://localhost:3000/api/superadmin/admin/2/status, Content-Type / application/Json, authorization bearer el_token (inhabilita admin, lo hace superadmin) 
+
+Metodo GET: http://localhost:3000/api/productos, Content-Type / application/Json,  (ver todos los productos esto es publico) 
+
+Metodo GET: http://localhost:3000/api/productos/1, Content-Type / application/Json,  (ver producto especifico mediante el ID esto es publico) 
+
+Metodo POST: http://localhost:3000/api/productos, Content-Type / application/Json, authorization bearer el_token (agregar producto) 
+
+{ 
+
+  "nombre": "Iphone 14", 
+
+  "descripcion": "Iphone sellado de 128gb", 
+
+  "precio_base": 1500.00, 
+
+  "stock": 100, 
+
+  "iva_porcentaje": 21.00, 
+
+  "stock_minimo": 10, 
+
+  "id_categoria": 1, 
+
+  "estado": "activo" 
+
+} 
+
+ 
+
+Metodo PUT: http://localhost:3000/api/productos/4, Content-Type / application/Json, authorization bearer el_token (actualizar producto mediante el ID) 
+
+{ 
+
+  "nombre": "Iphone 13", 
+
+  "descripcion": "Iphone sellado de 256gb", 
+
+  "precio_base": 1800.00, 
+
+  "stock": 150, 
+
+  "iva_porcentaje": 21.00, 
+
+  "stock_minimo": 15, 
+
+  "id_categoria": 2, 
+
+  "estado": "activo" 
+
+} 
+
+ 
+
+Metodo DELETE: http://localhost:3000/api/productos/4, Content-Type / application/Json, authorization bearer el_token (inhabilita producto mediante el ID) 
+
+Metodo GET: http://localhost:3000/api/pedidos, Content-Type / application/Json, authorization bearer el_token (lista los pedidos) 
+
+Metodo GET: http://localhost:3000/api/pedidos/2, Content-Type / application/Json, authorization bearer el_token (lista un pedido en especifico mediante ID) 
+
+Metodo PUT: http://localhost:3000/api/pedidos/5/estado, Content-Type / application/Json, authorization bearer el_token (cambia el estado del pedido mediante el ID del pedido y para cambiar tenes que ir poniendo 1,2,etc depende el estado que esta) 
+
+{ 
+
+  "estado": 2 
+
+} 
+
+ 
+
+Metodo GET: http://localhost:3000/api/envios, Content-Type / application/Json, authorization bearer el_token (lista los envios) 
+
+Metodo GET: http://localhost:3000/api/envios/1, Content-Type / application/Json, authorization bearer el_token (lista un envio especifico mediante el ID) 
+
+Metodo GET: http://localhost:3000/api/historial_pedidos, Content-Type / application/Json, authorization bearer el_token (observa el historial de pedidos) 
+
+Metodo GET: http://localhost:3000/api/historial_pedidos/pedido/1, Content-Type / application/Json, authorization bearer el_token (observa el historial de pedidospor ID_especifico) 
+
+Metodo GET: http://localhost:3000/api/superadmin/system-stats, Content-Type / application/Json, authorization bearer el_token (estadisticas del sistema solo lo puede hacer el superadmin) 
+
+Metodo PUT: http://localhost:3000/api/users/profile/admin/9, Content-Type / application/Json, authorization bearer el_token (el superadmin actualiza el perfil del admin) 
+
+{ 
+
+  "nombre": "Claudia", 
+
+  "apellido": "Fernandez",  
+
+  "email": "claudia.fer@feraytek.com", 
+
+  "telefono": "+54 11 1234-5678" 
+
+} 
+
+ 
+
+Metodo POST: http://localhost:3000/api/envios/crear-para-existentes, Content-Type / application/Json, authorization bearer el_token (este crea el envio para los pedidos existentes que no tengan envio, ahora es automatico pero por las dudas) 
+
+Metodo GET: http://localhost:3000/api/historial-pedidos, Content-Type / application/Json, authorization bearer el_token (ve el historial de todos) 
+
+Metodo GET: http://localhost:3000/api/historial-pedidos/pedido/2, Content-Type / application/Json, authorization bearer el_token (ve un historial de un pedido en especifico) 
+
+ 
+
+ 
+
+Carrito (Cliente/administradores) 
+
+Metodo GET: http://localhost:3000/api/carrito, Content-Type / application/Json, authorization bearer el_token (ver carrito del cliente) 
+
+Metodo POST: http://localhost:3000/api/carrito, , Content-Type / application/Json, authorization bearer el_token ( agregar producto al carrito) 
+
+{ 
+
+  "id_usuario": 19, 
+
+  "id_producto": 2, 
+
+  "id_variante": 2, 
+
+  "cantidad": 1, 
+
+  "precio_unitario": 500.00, 
+
+  "iva_porcentaje": 21 
+
+} 
+
+ 
+
+Metodo DELETE: http://localhost:3000/api/carrito/item, Content-Type / application/Json, authorization bearer el_token (eliminar producto del carrito) 
+
+{ 
+
+  "id_producto": 2, 
+
+  "id_variante": 2 
+
+} 
+
+ 
+
+Metodo DELETE: http://localhost:3000/api/carrito, Content-Type / application/Json, authorization bearer el_token (vaciar mi carrito) 
+
+ 
+
+     Carrito (Administradores/SuperAdmin Funcionalidades) 
+
+Metodo GET: http://localhost:3000/api/carrito/admin/todos, Content-Type / application/Json, authorization bearer el_token (para ver todos los carritos) 
+
+Metodo GET: http://localhost:3000/api/carrito/admin/usuario/19, Content-Type / application/Json, authorization bearer el_token (ver carrito de usuario especifico por ID) 
+
+Metodo GET: http://localhost:3000/api/carrito/admin/abandonados?dias=7, Content-Type / application/Json, authorization bearer el_token (ver carritos abandonados por defecto es 7 dias, pero podemos poner cuantos dias sea necesario) 
+
+Metodo DELETE: http://localhost:3000/api/carrito/admin/limpiar-abandonados, Content-Type / application/Json, authorization bearer el_token (limpiar los carritos abandonados) 
+
+{ 
+
+  "dias": 30 
+
+} 
+
+ 
+
+Metodo GET: http://localhost:3000/api/carrito/admin/estadisticas, Content-Type / application/Json, authorization bearer el_token (para ver las estadisticas de los carritos) 
+
+ 
+
+ 
+
+SuperAdmin/admin 
+
+Metodo GET: http://localhost:3000/api/admin/stats/users-count, Content-Type / application/Json, authorization bearer el_token (conteo de usuarios) 
+
+Metodo GET: http://localhost:3000/api/admin/stats/orders-today, Content-Type / application/Json, authorization bearer el_token (ver pedidos del dia) 
+
+Metodo GET: http://localhost:3000/api/admin/stats/revenue-month, Content-Type / application/Json, authorization bearer el_token (ingresos del mes). 
+
+Metodo GET: http://localhost:3000/api/admin/users/list?page=1&limit=10, Content-Type / application/Json, authorization bearer el_token (lista de los usuarios con paginacion). 
+
+Metodo PUT: http://localhost:3000/api/admin/users/22/role, Content-Type / application/Json, authorization bearer el_token (cambiar rol a usuario, admin, cliente, super admin. Ej body: “rol”: “cliente). 
+
+Metodo PUT: http://localhost:3000/api/admin/users/22/status, Content-Type / application/Json, authorization bearer el_token (cambiar estado del usuario, “activo”, “inactivo”. Ej body: “estado”: “inactivo”). 
+
+Metodo GET: http://localhost:3000/api/admin/audit/logs?page=1&limit=10, Content-Type / application/Json, authorization bearer el_token (consultar logs de auditoria). 
+
+Metodo POST: http://localhost:3000/api/admin/audit/log, Content-Type / application/Json, authorization bearer el_token (auditorias que se hacen manualmente). 
+
+{ 
+
+    "tipo_accion": "cambio_rol", 
+
+    "usuario_afectado_id": 22, 
+
+    "descripcion": "Cambio de rol realizado manualmente desde panel admin", 
+
+    "detalles": "Usuario promovido de cliente a administrador" 
+
+} 
+
+ 
+
+ 
+
+Metodo GET: http://localhost:3000/api/admin/config, Content-Type / application/Json, authorization bearer el_token (obtener todas las configuraciones globales). 
+
+Metodo PUT: http://localhost:3000/api/admin/config/max_cart_items, Content-Type / application/Json, authorization bearer el_token (Actualizar configuración específica - Máximo items en carrito. Body: “value”: 50). 
+
+Metodo PUT: http://localhost:3000/api/admin/config/maintenance_mode, Content-Type / application/Json, authorization bearer el_token (activar modo mantenimiento. Body: “value”: true). 
+
+Metodo PUT: http://localhost:3000/api/admin/config/allow_registrations,  Content-Type / application/Json, authorization bearer el_token (desactivar registros. Body: “value”: false).  
+
+Metodo PUT: http://localhost:3000/api/admin/config/max_file_size_mb, Content-Type / application/Json, authorization bearer el_token (cambiar tamaño maximo de archivos. Body: “value”: 10). 
+
+ 
+
+ 
+
+Categorías-producto 
+
+Metodo GET: http://localhost:3000/api/categorias/activas, Content-Type / application/Json, (obtiene las categorias activas esto es publico). 
+
+Metodo GET: http://localhost:3000/api/categorias/stats, Content-Type / application/Json, authorization bearer el_token (obtiene estadisticas de las categorias esto es para admin/superadmin). 
+
+Metodo GET: http://localhost:3000/api/categorias/1, Content-Type / application/Json, (obtiene una categoria mediante el id, esto es publico). 
+
+Metodo GET: http://localhost:3000/api/categorias, Content-Type / application/Json, authorization bearer el_token (obtiene todas las categorias, esto es para admin/superadmin). 
+
+Metodo POST: http://localhost:3000/api/categorias, Content-Type / application/Json, authorization bearer el_token (crea nuevas categorias, esto es para admin/superadmin). 
+
+{ 
+
+    "nombre_categoria": "Telefonos Apple",   
+
+    "descripcion": "Telefonos Apple seminuevos y nuevos",          
+
+    "estado": "activa"                             
+
+} 
+
+ 
+
+Metodo PUT: http://localhost:3000/api/categorias/4, Content-Type / application/Json, authorization bearer el_token (actualizar una categoria mediante el ID, esto es para admin/superadmin). 
+
+Metodo DELETE: http://localhost:3000/api/categorias/4, Content-Type / application/Json, authorization bearer el_token (cambia el estado de la categoria a actica o inactiva o viceversa mediante id, esto es para admin/superadmin). 
+
+Metodo DELETE: http://localhost:3000/api/categorias/4/permanent, Content-Type / application/Json, authorization bearer el_token (elimina la categoria de forma permanente, esto es para admin/superadmin). 
+
+ 
+
+ 
+
+Imagenes-Pruducto 
+
+Metodo GET: http://localhost:3000/api/imagenes_productos, Content-Type / application/Json, (puede ver las imagenes del producto, es publico) 
+
+Metodo GET: http://localhost:3000/api/imagenes_productos/producto/2, Content-Type / application/Json, (puede ver las imagenes del producto en específico por id, es publico) 
+
+Metodo POST: http://localhost:3000/api/imagenes_productos, Content-Type / application/Json, authorization bearer el_token (puede agregar imagenes para los productos, esto es para admin/superadmin). 
+
+{ 
+
+  "id_producto": 1, 
+
+  "id_variante": 2, 
+
+  "url_imagen": "https://ejemplo.com/imagen-producto.jpg", 
+
+  "posicion": 1, 
+
+  "alt_text": "un ejemplo" 
+
+} 
+
+ 
+
+Metodo DELETE: http://localhost:3000/api/imagenes_productos/2,  Content-Type / application/Json, authorization bearer el_token (puede eliminar las imagenes del producto mediante el ID de la imagen, esto es para admin/superadmin). 
+
+ 
+
+ 
+
+Pagos 
+
+Metodo POST: http://localhost:3000/api/pagos, Content-Type / application/Json, authorization bearer el_token (crea el pago, necesita token del cliente). 
+
+{ 
+
+  "id_pedido": 17, 
+
+  "descripcion": "Compra de productos Feraytek", 
+
+  "monto_total": 1000.00 
+
+} 
+
+ 
+
+Metodo POST: http://localhost:3000/api/pagos/simular-aprobacion/2952576950-d9340c52-48b6-470f-8838-f5ac7b11d5bf, Content-Type / application/Json, authorization bearer el_token (simula la simulación del pago lo hace el admin o el superadmin). 
+
+Metodo GET: http://localhost:3000/api/pagos/consulta, Content-Type / application/Json, authorization bearer el_token (consulta sus pagos el cliente) 
+
+Metodo GET: http://localhost:3000/api/pagos, Content-Type / application/Json, authorization bearer el_token (esto lista todos los pagos lo puede hacer admin/superadmin) 
+
+Metodo GET: http://localhost:3000/api/pagos/consulta?estado=aprobado&monto_min=1000&limit=5&page=1, Content-Type / application/Json, authorization bearer el_token (esto hace consulta mediante filtros lo hace admin/superadmin) 
+
+ 
+
+ 
+
+Reseñas 
+
+Metodo POST:  http://localhost:3000/api/resenas, Content-Type / application/Json, authorization bearer el_token (esto crea una reseña lo puede hacer cualquier usuario autenticado) 
+
+{ 
+
+  "id_producto": 123, 
+
+  "calificacion": 5, 
+
+  "comentario": "Excelente producto, muy recomendado!" 
+
+} 
+
+ 
+
+Metodo GET: http://localhost:3000/api/resenas, Content-Type / application/Json, authorization bearer el_token (lista todas las reseñas lo hace andmin/superadmin) 
+
+Metodo GET: http://localhost:3000/api/resenas/producto/id-producto, Content-Type / application/Json, authorization bearer el_token (muestra las reseñas de un producto en específico esto es publico) 
+
+Metodo GET: http://localhost:3000/api/resenas/obtener?id=4, Content-Type / application/Json, authorization bearer el_token (obtiene una reseña en específico para los usuarios autenticado) 
+
+Metodo PUT: http://localhost:3000/api/resenas/id_reseña,  Content-Type / application/Json, authorization bearer el_token (permite editar su reseña osea del autor) 
+
+{ 
+
+  "calificacion": 4, 
+
+  "comentario": "Actualizo mi comentario, muy buen producto" 
+
+} 
+
+ 
+
+ 
+
+ 
+
+Soporte  
+
+Metodo POST: http://localhost:3000/api/soporte, Content-Type / application/Json, authorization bearer el_token (crea un reclamo el cliente) 
+
+{ 
+
+  "asunto": "Problema con mi pedido #123", 
+
+  "descripcion": "El producto llegó dañado y necesito un reembolso", 
+
+  "prioridad": "alta" 
+
+} 
+
+ 
+
+Metodo GET: http://localhost:3000/api/soporte/mis-tickets, Content-Type / application/Json, authorization bearer el_token (puede ver sus reclamos cliente) 
+
+Metodo GET: http://localhost:3000/api/soporte/id_soporte,  Content-Type / application/Json, authorization bearer el_token (puede ver detalle de su reclamos cliente) 
+
+Metodo GET: http://localhost:3000/api/soporte(/api/soporte?estado=abierto&prioridad=alta&page=1&limit=10), Content-Type / application/Json, authorization bearer el_token (lista todos los reclamos, lo puede hacer con filtro tambien admin/superadmin) 
+
+Metodo GET:  http://localhost:3000/api/soporte/estadisticas,  Content-Type / application/Json, authorization bearer el_token (para consulta de las estadisticas lo puede hacer andmin/superadmin) 
+
+Metodo GET: http://localhost:3000/api/soporte/id_soporte, Content-Type / application/Json, authorization bearer el_token (puede ver cualquier reclamo lo puede hacer andmin/superadmin) 
+
+Metodo PUT: http://localhost:3000/api/soporte/:id_soporte/responder, Content-Type / application/Json, authorization bearer el_token (puede responder los reclamos lo puede hacer andmin/superadmin) 
+
+Metodo PUT: http://localhost:3000/api/soporte/:id_soporte/prioridad,  Content-Type / application/Json, authorization bearer el_token (cambia de prioridad del reclamo lo puede hacer andmin/superadmin) 
+
+ 
+
+{ 
+
+  "prioridad": "urgente" 
+
+} 
+
+ 
+
+ 
+
+Metodo PUT: http://localhost:3000/api/soporte/:id_soporte/cerrar, Content-Type / application/Json, authorization bearer el_token (cierra el reclamo lo puede hacer andmin/superadmin) 
+
+{ 
+
+  "motivo": "Problema resuelto - Reembolso procesado", 
+
+  "estado": "cerrado" 
+
+} 
+
+ 
+
+ 
+
+Variantes: 
+
+Metodo GET:  http://localhost:3000/api/variantes,  Content-Type / application/Json, (lista las variantes del producto esto es publico) 
+
+Metodo GET:  http://localhost:3000/api/variantes/1,  Content-Type / application/Json, (ver variante de un producto esto es publico) 
+
+Metodo POST: http://localhost:3000/api/variantes,  Content-Type / application/Json,authorization bearer el_token (crear variante esto lo hace admin/superadmin) 
+
+{ 
+
+  "id_producto": 1, 
+
+  "nombre_variante": "Color", 
+
+  "valor_variante": "Rojo", 
+
+  "precio_adicional": 0, 
+
+  "stock": 50 
+
+} 
+
+ 
+
+ 
+
+Metodo PUT:  http://localhost:3000/api/variantes/1, Content-Type / application/Json,authorization bearer el_token (actualiza variante esto lo hace admin/superadmin) 
+
+{ 
+
+  "stock": 25 
+
+} 
+
+ 
+
+Metodo DELETE: http://localhost:3000/api/variantes/1, Content-Type / application/Json,authorization bearer el_token (elimina variante esto lo hace admin/superadmin) 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

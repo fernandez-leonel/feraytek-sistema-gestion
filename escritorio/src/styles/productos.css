@@ -1,0 +1,327 @@
+/*
+  Hoja de estilos del módulo de Productos (Feraytek)
+  Objetivo: mejorar limpieza, modernidad, consistencia y profesionalismo
+  Paleta: naranja (#FF7A00), azul oscuro casi negro (#0F1624), gris oscuro (#1E1E1E), naranja claro accesorio (#FFB266)
+  Alcance: estilos específicos del módulo, responsivos y con comentarios detallados
+*/
+
+/*
+  Contenedor del módulo
+  - Define tokens de diseño (variables CSS) para colores, sombras, radios y espaciados
+  - Facilita modificaciones futuras de tema desde un solo lugar
+*/
+.productos-module {
+  /* Color de fondo base del módulo: azul oscuro casi negro para contraste y descanso visual */
+  --color-bg: #0F1624;
+  /* Color de panel/tarjeta: mismo tono para coherencia */
+  --color-panel: #0F1624;
+  /* Color de borde principal: gris-azul ligeramente más claro para separación sutil */
+  --color-border: #1E2330;
+  /* Color de borde suave: aún más tenue para líneas secundarias (filas de tabla) */
+  --color-border-soft: #1B2230;
+  /* Color de fila alternada en tabla: leve traslucidez para diferenciación sin saturar */
+  --color-row-alt: rgba(255, 255, 255, 0.03);
+  /* Color de texto general: gris claro legible en fondo oscuro */
+  --color-text: #E5E7EB;
+  /* Color de texto de placeholder: gris claro para indicar campos vacíos */
+  --color-muted: #C9D1D9;
+  /* Acento azul del panel: usado en acentos y acciones primarias */
+  --color-orange: #3b82f6;
+  /* Acento azul claro: usado en estados suaves y detalles */
+  --color-orange-soft: #93c5fd;
+  /* Gris oscuro de paleta: usado en fondos e indicadores neutros */
+  --color-gray-dark: #1E1E1E;
+  /* Sombra profesional estilo material (shadow-md) para profundidad sutil */
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.25);
+  /* Radio de borde estándar para tarjetas y contenedores */
+  --radius: 12px;
+  /* Espaciados base: escala sencilla para márgenes/paddings */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem;  /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem;    /* 16px */
+  --spacing-6: 1.5rem;  /* 24px */
+  /* Tipografía: altura de línea mayor para mejor lectura en bloques de texto */
+  --line-height: 1.6;
+  /* Tamaños fluidos básicos para tipografía */
+  --font-sm: clamp(12px, 0.9vw, 14px);
+  --font-md: clamp(14px, 1.2vw, 16px);
+  --font-lg: clamp(16px, 1.4vw, 18px);
+}
+
+/*
+  Tipografía base dentro del módulo
+  - Aumenta line-height y ajusta font-weight para lectura accesible (AA)
+*/
+.productos-module {
+  line-height: var(--line-height);
+  color: var(--color-text);
+}
+
+/*
+  Tarjetas (cards)
+  - Mayor padding (1.5rem) para respiración visual
+  - Radios de 12px para suavidad
+  - Sombra sutil profesional
+  - Borde tenue para separar del fondo sin saturar
+*/
+.productos-module .card {
+  background: var(--color-panel);
+  padding: var(--spacing-6);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+/*
+  Grid de estadísticas rápidas
+  - Separación uniforme y consistente
+  - Números en naranja de marca para destacar métricas
+*/
+.productos-module .stats-grid {
+  gap: var(--spacing-6);
+}
+.productos-module .stat-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.productos-module .stat-number {
+  color: var(--color-orange);
+  font-weight: 700; /* énfasis visual controlado */
+  font-size: var(--font-lg); /* tamaño fluido para jerarquía visual */
+}
+
+/*
+  Barra de filtros
+  - Layout más espacioso con padding horizontal de 1rem
+  - Separación vertical entre elementos para claridad
+  - Altura uniforme de inputs y selects
+*/
+.productos-module .productos-filters {
+  padding: 0 var(--spacing-4);
+  row-gap: var(--spacing-3);
+  column-gap: var(--spacing-3);
+  flex-wrap: wrap; /* responsive: los filtros se acomodan en múltiples líneas */
+}
+.productos-module .productos-filters > * { flex: 0 1 auto; } /* elementos se encogen y crecen con el contenedor */
+.productos-module .productos-filters input,
+.productos-module .productos-filters select {
+  height: 44px; /* altura uniforme accesible */
+  border: 1px solid #1E2330; /* separación suave según paleta */
+  border-radius: 10px; /* suavidad en controles */
+  background: #111827; /* fondo de input oscuro legible */
+  color: var(--color-text); /* texto claro sobre fondo oscuro */
+  padding: 0 var(--spacing-3); /* padding horizontal equilibrado */
+}
+.productos-module input[type='number']::-webkit-outer-spin-button,
+.productos-module input[type='number']::-webkit-inner-spin-button {
+  /* oculta flechas en inputs numéricos en Chrome/Edge para estética limpia */
+  -webkit-appearance: none; /* elimina controles nativos */
+  margin: 0; /* evita desplazamiento por defecto */
+}
+.productos-module input[type='number'] {
+  /* oculta flechas en Firefox manteniendo funcionalidad numérica */
+  -moz-appearance: textfield; /* apariencia de campo de texto */
+}
+.productos-module .productos-filters input::placeholder {
+  color: var(--color-muted); /* placeholder en gris claro para pistas discretas */
+}
+.productos-module .productos-filters input:focus,
+.productos-module .productos-filters select:focus {
+  outline: none; /* elimina borde nativo */
+  border-color: var(--color-orange); /* indica foco con color de marca */
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.25); /* anillo de foco accesible */
+}
+
+/*
+  Tabla de productos
+  - Apariencia moderna con filas alternadas y separación tenue
+  - Encabezado claro y contrastado
+  - Hover suave en filas
+*/
+.productos-module .table {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden; /* mantiene radios en contenido interno */
+}
+.productos-module .table .actions { display: flex; gap: var(--spacing-2); flex-wrap: wrap; } /* grupo de acciones adaptativo */
+.productos-module .dropzone { border: 2px dashed var(--color-orange); border-radius: var(--radius); padding: var(--spacing-4); background: rgba(59,130,246,0.06); color: var(--color-text); text-align: center; cursor: pointer; }
+.productos-module .dropzone.dragging { background: rgba(59,130,246,0.12); }
+.productos-module .table table {
+  width: 100%; /* aprovecha todo el ancho disponible */
+  border-collapse: separate; /* permite bordes suaves entre filas */
+  border-spacing: 0; /* elimina espacios no deseados */
+}
+.productos-module .table th {
+  background: #111827; /* encabezado ligeramente más claro que panel */
+  color: var(--color-text); /* legible en fondo oscuro */
+  font-weight: 600; /* énfasis sutil */
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left; /* alineación natural para lectura */
+}
+.productos-module .table td {
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border-soft); /* línea separadora tenue */
+  vertical-align: middle; /* iconos y textos alineados */
+}
+.productos-module .table tbody tr:nth-child(odd) {
+  background: var(--color-row-alt); /* alternado muy sutil para ritmo visual */
+}
+.productos-module .table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05); /* hover discreto para orientación */
+  transition: background 0.25s ease; /* transición suave */
+}
+
+/*
+  Botones
+  - Transiciones suaves (0.25s)
+  - Efecto hover “levantar” (translateY(-2px))
+  - Sombras sutiles
+  - Contraste accesible
+*/
+.productos-module .btn {
+  border-radius: 10px; /* suaviza botones sin perder carácter administrativo */
+  padding: 12px 18px; /* espaciado interno equilibrado */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease; /* animaciones fluidas */
+  box-shadow: 0 0 0 rgba(0,0,0,0); /* estado base sin sombra extra */
+  font-size: var(--font-md); /* tamaño de fuente adaptativo */
+}
+.productos-module .btn:hover {
+  transform: translateY(-2px); /* levanta ligeramente en hover */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25); /* sombra más marcada en hover */
+}
+.productos-module .btn:active {
+  transform: translateY(0); /* vuelve al plano al hacer click */
+}
+
+/*
+  Botón naranja (acción primaria)
+  - Color de marca con hover más intenso
+  - Sombra acorde a acento para jerarquía visual
+*/
+.productos-module .btn-orange {
+  background: var(--color-orange);
+  color: #FFFFFF; /* contraste alto sobre fondo */
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
+}
+.productos-module .btn-orange:hover {
+  background: #2563eb; /* azul más intenso en hover */
+}
+
+/*
+  Etiquetas (badges)
+  - Indicadores más redondeados
+  - Padding interno consistente
+  - Fondo traslúcido para evitar saturación visual
+*/
+.productos-module .badge {
+  display: inline-flex; /* alinea iconos y texto correctamente */
+  align-items: center; /* centra verticalmente el contenido */
+  gap: var(--spacing-2); /* separación entre icono y texto */
+  padding: 6px 10px; /* padding consistente para legibilidad */
+  border-radius: 999px; /* forma de pastilla muy redondeada */
+  font-size: 12px; /* tamaño compacto para indicadores */
+  line-height: 1; /* evita altura extra no deseada */
+}
+.productos-module .badge-success {
+  background: rgba(46, 204, 113, 0.15); /* verde suave traslúcido */
+  color: #d1fae5; /* verde muy claro para texto */
+  border: 1px solid #10b981; /* borde verde accesible */
+}
+.productos-module .badge-danger {
+  background: rgba(239, 68, 68, 0.15); /* rojo suave traslúcido */
+  color: #fecaca; /* rojo claro en texto */
+  border: 1px solid #ef4444; /* borde rojo accesible */
+}
+.productos-module .badge-neutral {
+  background: rgba(30, 30, 30, 0.45); /* gris oscuro traslúcido de paleta */
+  color: var(--color-orange); /* acento en texto para indicadores neutrales */
+  border: 1px solid var(--color-orange); /* borde de marca para consistencia */
+}
+
+/*
+  Panel lateral (detalle de producto)
+  - Anchura fija con adaptación responsive
+  - Borde y sombra sutil para separación del lienzo principal
+*/
+.productos-module .side-panel {
+  background: var(--color-panel);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -10px 0 20px rgba(0,0,0,0.3); /* sombra lateral para profundidad */
+  width: 520px; /* anchura objetivo en desktop */
+  max-width: 90vw; /* responsivo: nunca excede viewport */
+  height: 100vh; /* ocupa alto total para contenido desplazable */
+  top: 0; /* fija al borde superior */
+  overflow-y: auto; /* permite scroll en contenido largo */
+}
+.productos-module .side-panel-header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/*
+  Pestañas del detalle
+  - Botones con estados activos y hover
+  - Acento naranja en activo
+*/
+.productos-module .tabs { padding: 8px var(--spacing-4); border-bottom: 1px solid var(--color-border); }
+.productos-module .tab {
+  background: #1f2937; /* botón tab neutro */
+  color: var(--color-text); /* legible sobre fondo oscuro */
+  border: none; /* sin borde para apariencia limpia */
+  border-radius: 10px; /* suavidad en tabs */
+  padding: 8px 12px; /* tamaño cómodo para click */
+  cursor: pointer; /* indicador de interactivo */
+  transition: background 0.25s ease, transform 0.25s ease; /* animación suave */
+}
+.productos-module .tab:hover { transform: translateY(-1px); }
+.productos-module .tab.active { background: var(--color-orange); color: #FFFFFF; }
+
+/*
+  Modal (crear/editar producto)
+  - Dimensiones cómodas con sombra y bordes suaves
+  - Inputs consistentes con paleta
+*/
+.productos-module .modal { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow-md); }
+.productos-module .grid2 { gap: var(--spacing-3); }
+.productos-module .grid2 input,
+.productos-module .grid2 select { height: 44px; border: 1px solid #1E2330; border-radius: 10px; background: #111827; color: var(--color-text); padding: 0 var(--spacing-3); }
+.productos-module .grid2 input::placeholder { color: var(--color-muted); }
+
+/*
+  Iconos dentro de badges/indicadores
+  - Ajusta tamaño y alineación para distribución armoniosa
+*/
+.productos-module .badge svg { width: 12px; height: 12px; }
+
+/*
+  Responsividad del módulo dentro de Electron
+  - Ajusta grillas y tablas en ventanas más pequeñas
+*/
+@media (max-width: 1024px) {
+  /* en pantallas medianas, reduce el gap para compactar contenido */
+  .productos-module .stats-grid { gap: var(--spacing-4); }
+  .productos-module .side-panel { width: 440px; }
+  .productos-module .btn { padding: 10px 16px; } /* botones ligeramente más compactos */
+  .productos-module .table th, .productos-module .table td { padding: var(--spacing-2); } /* tabla más compacta */
+}
+@media (max-width: 640px) {
+  /* en pantallas pequeñas, permite scroll horizontal para tabla */
+  .productos-module .table { overflow-x: auto; }
+  .productos-module .side-panel { width: 100vw; }
+  .productos-module .productos-filters { padding: 0 var(--spacing-2); }
+  .productos-module .productos-filters { row-gap: var(--spacing-2); column-gap: var(--spacing-2); }
+  .productos-module .btn { padding: 9px 14px; font-size: var(--font-sm); } /* botones compactos en móviles */
+  .productos-module .card { padding: var(--spacing-4); } /* reduce padding para caber mejor */
+}
+.productos-module .btn-view { background: #1f2937; color: #E5E7EB; border: 1px solid #263245; } /* botón ver, neutro oscuro */
+.productos-module .btn-view:hover { background: #253042; }
+.productos-module .btn-edit { background: #1f2937; color: #E5E7EB; border: 1px solid #263245; }
+.productos-module .btn-edit:hover { border-color: var(--color-orange); }
+.productos-module .btn-delete { background: #7f1d1d; color: #FFFFFF; border: 1px solid #ef4444; } /* botón eliminar, alerta accesible */
+.productos-module .btn-delete:hover { background: #8f2222; }

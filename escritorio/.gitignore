@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+escritorio/backend/node_modules/
+
+# Build outputs
+dist/
+build/
+.cache/
+coverage/
+tmp/
+temp/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env & secrets
+.env
+.env.*
+*.pem
+*.key
+*.cert
+
+# Local backend storages
+escritorio/backend/uploads/
+escritorio/backend/storage/
+escritorio/backend/temp/
+escritorio/backend/logs/
+escritorio/backend/local-images/
+
+# DB files
+*.sqlite
+*.db
