@@ -113,12 +113,11 @@ El objetivo principal fue aplicar conocimientos de programación para desarrolla
 
 ---
 
-## 📎 Autor
+## 👤 Autor
 
 **Leonel Fernandez**  
 Técnico Universitario en Programación – UTN  
 
-🔗 GitHub: https://github.com/fernandez-leonel
 
 
 
