@@ -1,3 +1,85 @@
+# Feraytek – Management System
+
+🇬🇧 English version  
+🇪🇸 Spanish version below
+
+## Description
+Feraytek is a **management system designed to handle business data and operations** using a **client–server architecture**.
+
+The system consists of a **central REST API**, a **web application**, and a **desktop application**, allowing integrated and organized data management.
+
+This project was developed to simulate a real-world professional environment, covering backend, frontend, database design, and system integration.
+
+---
+
+## Main Features
+- User authentication with JWT
+- Product management
+- Orders and cart management
+- Reports and analytics
+- Web and desktop clients connected to the same API
+- Modular and scalable architecture
+
+---
+
+## Tech Stack
+
+### Backend / API
+- Node.js
+- Express
+- REST architecture
+- JWT authentication
+- MySQL
+
+### Web Application
+- HTML
+- CSS
+- JavaScript
+- REST API consumption
+
+### Desktop Application
+- Electron
+- JavaScript
+- REST API integration
+
+### Database
+- MySQL
+
+### Tools
+- Git & GitHub
+- Environment variables (`.env`)
+- Layered architecture
+
+---
+
+## Project Role & Responsibilities
+This project was developed as a **team project**.
+
+My responsibilities included:
+- Backend development and business logic
+- Database design and SQL integration
+- Web application development
+- Desktop application development
+- Integration between all system components
+- Task organization and coordination across different development stages
+
+I also have experience working **independently**, managing projects end-to-end.
+
+---
+
+## Project Status
+✅ Functional  
+✅ Completed  
+✅ Organized and modular codebase  
+✅ Ready to be extended or adapted for production environments  
+
+---
+
+## Screenshots
+(see below)
+
+
+
 # Feraytek – Sistema de Gestión
 
 ## Descripción
