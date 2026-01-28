@@ -107,6 +107,31 @@ También cuento con experiencia trabajando de forma **individual**, gestionando 
 
 ---
 
+
+## 📸 Capturas del sistema
+
+### Inicio
+![Inicio](assets/Inicio.png)
+
+### Productos
+![Productos](assets/Productos.png)
+![Producto](assets/Producto.png)
+
+### Carrito
+![Carrito](assets/Carrito.png)
+
+### Pedidos
+![Pedidos](assets/pedidos.png)
+![Mis Pedidos](assets/Mis%20Pedidos.png)
+
+### Informes
+![Informe](assets/Informe.png)
+![Informes](assets/Informes.png)
+
+### Aplicación de escritorio
+![Productos Escritorio](assets/Productos%20Escrio.png)
+
+
 ## 🚀 Objetivo del proyecto
 
 El objetivo principal fue aplicar conocimientos de programación para desarrollar un sistema completo, funcional y escalable, simulando un entorno de desarrollo profesional.
